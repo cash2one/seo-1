@@ -1,0 +1,40 @@
+{% if bolds %}
+    <table class="table table-hover bg-info">
+        <caption>Подсветка</caption>
+        <tbody>
+            {% for key, value in bolds %}
+                <tr><td>{{ key }}</td> <td>{{ value }}</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Нет иных вариантов подсветок</p>
+{% endif %}
+{% if average %}
+    <table class="table table-hover">
+        <caption>Часто встречающиеся слова</caption>
+        <tbody>
+                {% for lemm in average.2 %}
+                <tr><td>{{ lemm.0 }}</td><td>{{ lemm.1 }}</td></tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    <p>Средняя длина тайтала - {{ average.0 }}, описания - {{ average.1 }}</p>
+{% endif %}
+{% if titles %}
+    <div class="panel-heading">
+        <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" id="collapse">Выдача</a>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <table class="table table-hover">
+            <thead>
+                <tr><th colspan="2">Title</th><th colspan="2">Описание</th></tr>
+            </thead>
+            <tbody>
+                {% for title, passage in titles %}
+                    <tr><td>{{ title.0 }}</td><td>{{ title.1 }}</td><td>{{ passage.0 }}</td><td>{{ passage.1 }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}

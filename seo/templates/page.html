@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+{% block content %}
+    {% placeholder "content" %}
+    <form class="col-md-offset-2 col-md-8 " id="form">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <label class="text-center">Регионы
+                    <select name="region" class="form-control ">
+                        <option value="2" selected>Санкт-Петербург</option>
+                        <option value="213">Москва</option>
+                    </select>
+                </label>
+            </div>
+            <div class="col-md-6">
+                <label class="text-center">Количество позиций
+                    <select name="pages" class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>5</option>
+                        <option selected>10</option>
+                        <option>20</option>
+                        <option>30</option>
+                        <option>40</option>
+                        <option>50</option>
+                        <option>100</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+        <textarea class="form-control" rows="9" name="keys"></textarea>
+        <button type="submit" class="btn btn-default col-md-12" id="go">Анализ выдачи Яндекса</button>
+    </form>
+    <div class="col-md-offset-2 col-md-8 clearfix" id="answer"></div>
+{% endblock content %}
